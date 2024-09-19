@@ -1,9 +1,15 @@
 import React from "react";
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import { useForm } from "react-hook-form";
 function Login() {
+    const {register , handleSubmit}=useForm()
+    const manageLogin = (data) =>{
+        console.log(data);
+        console.log(data.email);
+        
+    }
   return (
     <div className="min-h-screen flex items-stretch text-white">
-      {/* Left Section with Background Image */}
       <div
         className="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
         style={{
@@ -14,7 +20,7 @@ function Login() {
         <div className="absolute bg-black opacity-60 inset-0 z-0"></div>
         <div className="w-full px-24 z-10">
           <h1 className="text-5xl font-bold text-left tracking-wide">
-            Keep it special
+            Certificate application
           </h1>
           <p className="text-3xl my-4">
             Capture your personal memory in unique way, anywhere.
@@ -56,59 +62,71 @@ function Login() {
           </span>
         </div>
       </div>
-
-      {/* Right Section with Form */}
       <div
-        className="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0"
-        style={{ backgroundColor: "#161616" }}
-      >
-        <div
-          className="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center"
-          style={{
-            backgroundImage:
-              'url("https://images.unsplash.com/photo-1577495508048-b635879837f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80")',
-          }}
-        >
-          <div className="absolute bg-black opacity-60 inset-0 z-0"></div>
-        </div>
-        <div className="w-full py-6 z-20">
-          <h1 className="my-6">
-            <svg viewBox="0 0 247 31" className="w-auto h-7 sm:h-8 inline-flex">
-              <path
-                fill="rgba(99,102,241, .8)"
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.055-3.382 12.758-10.146-2.553 3.382-5.531 4.65-8.931 3.805-1.943-.482-3.33-1.882-4.867-3.432C34.733 4.417 31.836 1.496 25.517 1.496zm19.338 10.221C39.998 10.371 37.74 8.775 36.96 7.34l-5.09-8.38H4.64V1.496h1.288l3.5 5.8c.748 1.242 1.496 1.741 2.493 1.82 1.345.089 1.79-1.483 1.79-1.832 0-.569-1.035-1.071-1.349-.76l-5.88-5.96h1.28c.706 0 .999-.392.878-.982-.121-.594-.794-.963-1.29-.963H2.5c-.497 0-.854.367-.854.86 0 .576.407 1.065.854 1.073h1.288L0 10.644v2.566c0 .574.407 1.066.854 1.074h1.292c.497 0 .854-.393.854-.866v-5.4l3.707 4.838c1.593 1.643 3.923 2.494 5.855 2.494 2.683 0 4.19-1.549 4.19-4.208 0-2.193-.881-3.525-1.514-4.207z"
-              />
-            </svg>
-          </h1>
-          <p className="text-gray-100">Login with your social media account</p>
-          <div className="flex justify-center space-x-4 my-3">
-            {/* Social Media Icons */}
-            <button className="bg-white text-black px-4 py-2 rounded-lg">Facebook</button>
-            <button className="bg-white text-black px-4 py-2 rounded-lg">Twitter</button>
-            <button className="bg-white text-black px-4 py-2 rounded-lg">Instagram</button>
-          </div>
-          <p className="text-gray-100">or use your email account:</p>
-          {/* Login Form */}
-          <div className="mt-5">
-            <input
-              type="email"
-              placeholder="Email"
-              className="px-4 py-2 mb-3 w-full bg-gray-900 text-white rounded-lg"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="px-4 py-2 mb-3 w-full bg-gray-900 text-white rounded-lg"
-            />
-            <button className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg w-full">
-              Sign In
-            </button>
-          </div>
-        </div>
-      </div>
+  className="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 relative"
+  style={{ backgroundColor: "#161616" }}
+>
+  <div
+    className="absolute lg:hidden inset-0 bg-gray-500 bg-no-repeat bg-cover"
+    style={{
+      backgroundImage:
+        'url("https://images.unsplash.com/photo-1577495508048-b635879837f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80")',
+    }}
+  >
+    <div className="absolute inset-0 bg-black opacity-60"></div>
+  </div>
+  <div className="relative w-full py-8 px-4 z-20">
+    <h1 className="text-3xl font-bold text-white mb-4">
+      LOG IN
+    </h1>
+    <p className="text-gray-300 mb-4">Don't have an account? <a href="/signup" className="text-indigo-500 hover:text-indigo-700">Sign Up</a></p>
+    <div className="flex justify-center space-x-4 mb-4">
+    <a href="#" className="bg-white text-black p-3 w-12 h-12 flex items-center justify-center rounded-lg hover:bg-gray-200">
+    <i className="fab fa-facebook-f"></i>
+  </a>
+  <a href="#" className="bg-white text-black p-3 w-12 h-12 flex items-center justify-center rounded-lg hover:bg-gray-200">
+    <i className="fab fa-google"></i>
+  </a>
+  <a href="#" className="bg-white text-black p-3 w-12 h-12 flex items-center justify-center rounded-lg hover:bg-gray-200">
+    <i className="fab fa-instagram"></i>
+  </a>
     </div>
+    <p className="text-gray-300 mb-4">or use your email account:</p>
+    <form onSubmit={handleSubmit(manageLogin)} className="flex flex-col items-center space-y-6">
+        <div className="relative w-full max-w-md">
+        <input
+        type="email"
+        placeholder="Email"
+        className="px-4 py-4 w-full bg-black text-gray-200 "
+        {...register("email", {
+            required: true,
+            validate: {
+              matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+              "Email address must be a valid address",
+            }
+          })}
+        />
+        </div>
+        <div className="relative w-full max-w-md">
+            <input
+            type="password"
+            placeholder="Password"
+            className="px-4 py-4 w-full bg-black text-gray-200 "
+            {...register("password", {
+                required: true,
+              })}
+            />
+            <div className="ml-72 mt-2">   
+                <a href="#" className="text-gray-400 transform  text-sm hover:underline">Forgot your password?</a>
+              </div>
+        </div>
+            <button className="px-5 py-3 bg-indigo-500 hover:bg-indigo-700 text-white rounded-full w-96 text-lg">
+             Log In
+            </button>
+    </form>
+  </div>
+</div>
+</div>
   );
 }
 
