@@ -1,12 +1,21 @@
 import React from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 function Login() {
     const {register , handleSubmit}=useForm()
+    const handleSuccess = (response) => {
+      console.log('Login Success:', response);
+    };
+  
+    const handleFailure = (response) => {
+      console.log('Login Failed:', response);
+    };
+  
     const manageLogin = (data) =>{
         console.log(data);
-        console.log(data.email);
-        
+        console.log(data.email);   
     }
   return (
     <div className="min-h-screen flex items-stretch text-white">
@@ -81,15 +90,24 @@ function Login() {
     </h1>
     <p className="text-gray-300 mb-4">Don't have an account? <a href="/signup" className="text-indigo-500 hover:text-indigo-700">Sign Up</a></p>
     <div className="flex justify-center space-x-4 mb-4">
-    <a href="#" className="bg-white text-black p-3 w-12 h-12 flex items-center justify-center rounded-lg hover:bg-gray-200">
-    <i className="fab fa-facebook-f"></i>
-  </a>
-  <a href="#" className="bg-white text-black p-3 w-12 h-12 flex items-center justify-center rounded-lg hover:bg-gray-200">
-    <i className="fab fa-google"></i>
-  </a>
-  <a href="#" className="bg-white text-black p-3 w-12 h-12 flex items-center justify-center rounded-lg hover:bg-gray-200">
-    <i className="fab fa-instagram"></i>
-  </a>
+    <div className="flex justify-center space-x-4 mb-4">
+    <GoogleOAuthProvider clientId="338609381858-le8eh97favfvec6qb5ajatffc140l7h5.apps.googleusercontent.com">
+              <GoogleLogin
+                onSuccess={handleSuccess}
+                onError={handleFailure}
+                render={(renderProps) => (
+                  <button
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                    className="bg-white text-black p-3 w-full h-12 flex items-center justify-center rounded-lg hover:bg-gray-200"
+                  >
+                    <i className="fab fa-google mr-2"></i> Sign in with Google
+                  </button>
+                )}
+              />
+              </GoogleOAuthProvider>
+            </div>
+              
     </div>
     <p className="text-gray-300 mb-4">or use your email account:</p>
     <form onSubmit={handleSubmit(manageLogin)} className="flex flex-col items-center space-y-6">
