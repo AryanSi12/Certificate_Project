@@ -1,15 +1,24 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import { useState } from 'react'
 
 import Login from './Components/Login'
-import { Link, Outlet } from 'react-router-dom'
+import SignUp from './Components/SignUp'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <Link to="/Login">login</Link>
-      <Outlet />
-    </>
+    <Router>
+      <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} /> {/* Sign-Up Page Route */}
+        {/* Other routes */}
+      </Routes>
+    </Router>
+    // <>
+    //   <Login/>
+    //   <SignUp/>
+    // </>
   )
 }
 
