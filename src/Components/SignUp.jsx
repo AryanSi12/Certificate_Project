@@ -13,6 +13,7 @@ function SignUp() {
   };
 
   return (
+    <section className="h-full">
     <div className="h-screen w-full flex items-stretch text-white">
 
       {/* Left Section with Background Image */}
@@ -164,6 +165,7 @@ function SignUp() {
         </div>
       </div>
     </div>
+    </section>
   );
 }
 

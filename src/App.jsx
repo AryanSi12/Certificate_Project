@@ -4,7 +4,6 @@ import { useState } from 'react'
 
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
-import { Link, Outlet } from 'react-router-dom'
 function App() {
   const [count, setCount] = useState(0)
 
