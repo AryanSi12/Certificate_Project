@@ -1,11 +1,10 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import { createBrowserRouter } from 'react-router-dom'
-import { RouterProvider } from 'react-router-dom'
-import Login from './Components/Login.jsx'
-import SignUp from './Components/SignUp.jsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Login from './Components/Login.jsx';
+import SignUp from './Components/SignUp.jsx';
 
 const router=createBrowserRouter([
   {
@@ -14,11 +13,11 @@ const router=createBrowserRouter([
     children :[
       
       {
-        path : "/Login",
+        path : "login",
         element : <Login />
       },
       {
-        path : "/Signup",
+        path : "signup",
         element : <SignUp />
       },
   ]
