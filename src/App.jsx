@@ -1,14 +1,22 @@
-import { BrowserRouter as  Router,Outlet, Link } from 'react-router-dom';
+import React from 'react';
+import { Link, Outlet } from 'react-router-dom'; // Don't forget to import Link and Outlet
 
-import { useState } from 'react'
+// import Login from './Components/Login';
+// import SignUp from './Components/SignUp';
+
 function App() {
+
   return (
     <>
-    <Link to="/Signup">Sign up</Link>
-    <Link to="/Login">Log in</Link>
+    {/* <nav>
+        <Link to="/signup">Sign up</Link>
+        <Link to="/login" style={{ marginLeft: '10px' }}>Log in</Link>
+      </nav> */}
+
+
     <Outlet />
     </>
-  )
+  );
 }
 
 export default App

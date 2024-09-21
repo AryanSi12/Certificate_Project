@@ -51,22 +51,23 @@ function SignUp() {
           
           <p className="text-gray-100">or use your email account:</p>
           {/* Sign Up Form */}
-          <div className="mt-5">
+          <form action="" className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+          <div className="pb-2 pt-4">
             <input
               type="text"
               placeholder="Full Name"
-              className="px-4 py-2 mb-3 w-full bg-gray-900 text-white rounded-lg"
+              className="px-4 py-2 block mb-3 w-full p-4 text-mb rounded-lg bg-black"
             />
             <input
               type="email"
               placeholder="Email"
-              className="px-4 py-2 mb-3 w-full bg-gray-900 text-white rounded-lg"
+              className="px-4 py-2 block mb-3 w-full p-4 text-mb rounded-lg bg-black"
             />
             <div className="relative mb-3">
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                className="px-4 py-2 w-full bg-gray-900 text-white rounded-lg"
+                className="px-4 py-2 block mb-3 w-full p-4 text-mb rounded-lg bg-black"
               />
               <button
                 type="button"
@@ -80,7 +81,7 @@ function SignUp() {
               <input
                 type={showPasswordConfirm ? "text" : "password"}
                 placeholder="Confirm Password"
-                className="px-4 py-2 w-full bg-gray-900 text-white rounded-lg"
+                className="px-4 py-2 block mb-3 w-full p-4 text-mb rounded-lg bg-black"
               />
               <button
                 type="button"
@@ -90,19 +91,20 @@ function SignUp() {
                 {showPasswordConfirm ? "Hide" : "Show"}
               </button>
             </div>
-            <button className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg w-full">
+            <button className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-48 font-bold">
               Sign Up
-            </button>
+              </button>
           </div>
+          </form>
           <br />
           <div className="flex items-center justify-between">
-                        <div className="w-full h-[1px] bg-gray-300"></div>
-                        <span className="text-sm uppercase mx-6 text-gray-400">Or</span>
-                        <div className="w-full h-[1px] bg-gray-300"></div>
+                        <div className="mb-3 w-full h-[1px] bg-gray-300"></div>
+                        <span className="mb-3 text-sm uppercase mx-6 text-gray-400">Or</span>
+                        <div className="mb-3 w-full h-[1px] bg-gray-300"></div>
                     </div>
-          <p className="text-gray-100">Sign up with</p>
+          <p className="mb-3 text-gray-100 font-bold">Sign up with</p>
           <div className="space-y-3">
-            <a href="#" className="flex items-center justify-center space-x-2 text-gray-600 my-2 py-2 bg-gray-100 hover:bg-gray-200 rounded">
+            <a href="#" className="flex items-center justify-center text-gray-600 my-2 py-2 bg-gray-100 hover:bg-gray-200 rounded-full w-48 mx-auto">
               <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 326667 333333" shapeRendering="geometricPrecision" textRendering="geometricPrecision" imageRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd">
                 <path d="M326667 170370c0-13704-1112-23704-3518-34074H166667v61851h91851c-1851 15371-11851 38519-34074 54074l-311 2071 49476 38329 3428 342c31481-29074 49630-71852 49630-122593m0 0z" fill="#4285f4"></path>
                 <path d="M166667 333333c44999 0 82776-14815 110370-40370l-52593-40742c-14074 9815-32963 16667-57777 16667-44074 0-81481-29073-94816-69258l-1954 166-51447 39815-673 1870c27407 54444 83704 91852 148890 91852z" fill="#34a853"></path>
@@ -111,7 +113,7 @@ function SignUp() {
               </svg>
               <span>Google</span>
             </a>
-            <a href="#" className="flex items-center justify-center space-x-2 text-gray-600 my-2 py-2 bg-gray-100 hover:bg-gray-200 rounded">
+            <a href="#" className="flex items-center justify-center text-gray-600 my-2 py-2 bg-gray-100 hover:bg-gray-200 rounded-full w-48 mx-auto">
               <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 124.8 123.36">
                 <defs>
                   <style>
@@ -138,7 +140,7 @@ function SignUp() {
               </svg>
               <span>Facebook</span>
             </a>
-            <a href="#" className="flex items-center justify-center space-x-2 text-gray-600 my-2 py-2 bg-gray-100 hover:bg-gray-200 rounded">
+            <a href="#" className="flex items-center justify-center text-gray-600 my-2 py-2 bg-gray-100 hover:bg-gray-200 rounded-full w-48 mx-auto">
               <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 122.31">
                 <defs>
                   <style>
