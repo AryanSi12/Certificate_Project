@@ -1,8 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import { Link } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { useForm } from "react-hook-form";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const [isCaptchaReady, setIsCaptchaReady] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState(null); // State to hold the captcha token
+  
+  // Initialize react-hook-form
+  const { register, handleSubmit, formState: { errors }, watch } = useForm();
+
+  const manageLogin = async (data) => {
+    console.log("Form data submitted:", data);
+    if (!captchaToken) {
+      console.error("Please complete the reCAPTCHA challenge.");
+      return;
+    }
+    // Send form data and captcha Token to your backend for verification
+    try {
+      const response = await fetch("/api/your-endpoint", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...data, captchaToken }),
+      });
+      const result = await response.json();
+      // Handle the result of the verification
+      console.log(result);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -10,6 +43,28 @@ function SignUp() {
 
   const togglePasswordConfirmVisibility = () => {
     setShowPasswordConfirm(!showPasswordConfirm);
+  };
+
+  const onChange = (token) => {
+    console.log("reCAPTCHA token:", token);
+    setCaptchaToken(token); // Store the token for verification
+  };
+
+  useEffect(() => {
+    // Check if reCAPTCHA is loaded
+    const handleLoad = () => {
+      setIsCaptchaReady(true);
+    };
+  
+    window.onload = handleLoad;
+    return () => {
+      window.onload = null; // Clean up the event listener
+    };
+  }, []);
+  
+  const validatePasswordMatch = (value) => {
+    const password = watch('password');
+    return value === password || 'Passwords do not match';
   };
 
   return (
@@ -50,25 +105,51 @@ function SignUp() {
           <p className="text-center text-md text-white-600 mt-2">Already have an account? <a href="#" className="text-blue-600 hover:text-blue-700 hover:underline" title="Sign In">Sign in here</a></p>
           
           <p className="text-gray-100">or use your email account:</p>
+
           {/* Sign Up Form */}
-          <form action="" className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+          <form onSubmit={handleSubmit(manageLogin)} className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
           <div className="pb-2 pt-4">
+
+             {/* Full Name */}
             <input
               type="text"
               placeholder="Full Name"
               className="px-4 py-2 block mb-3 w-full p-4 text-mb rounded-lg bg-black"
+              {...register("fullName", 
+                { required: "Full name is required"
+              })}
             />
+            {errors.fullName && <p className="text-red-500">{errors.fullName.message}</p>}
+
+            {/* Email */}
             <input
               type="email"
               placeholder="Email"
               className="px-4 py-2 block mb-3 w-full p-4 text-mb rounded-lg bg-black"
+              {...register("email", {
+                required: "Email is required",
+                pattern:{
+                  value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                  message: "Invalid email address",
+                },
+              })}
             />
+            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+
+            {/* Password */}
             <div className="relative mb-3">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                className="px-4 py-2 block mb-3 w-full p-4 text-mb rounded-lg bg-black"
-              />
+            <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    className="px-4 py-2 block mb-3 w-full p-4 text-mb rounded-lg bg-black"
+                    {...register("password", {
+                      required: "Password is required",
+                      minLength: {
+                        value: 6,
+                        message: "Password must be at least 6 characters long",
+                      },
+                    })}
+                  />
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
@@ -76,22 +157,39 @@ function SignUp() {
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
+              {errors.password && <p className="text-red-500">{errors.password.message}</p>}
             </div>
+
+            {/* Confirm Password */}
             <div className="relative mb-3">
-              <input
-                type={showPasswordConfirm ? "text" : "password"}
-                placeholder="Confirm Password"
-                className="px-4 py-2 block mb-3 w-full p-4 text-mb rounded-lg bg-black"
-              />
-              <button
-                type="button"
-                onClick={togglePasswordConfirmVisibility}
-                className="absolute inset-y-0 right-0 flex items-center px-4"
-              >
-                {showPasswordConfirm ? "Hide" : "Show"}
-              </button>
-            </div>
-            <button className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-48 font-bold">
+                  <input
+                    type={showPasswordConfirm ? "text" : "password"}
+                    placeholder="Confirm Password"
+                    className="px-4 py-2 block mb-3 w-full p-4 text-mb rounded-lg bg-black"
+                    {...register("confirmPassword", {
+                      required: "Confirm password is required",
+                      validate: validatePasswordMatch,
+                    })}
+                  />
+                  <button
+                    type="button"
+                    onClick={togglePasswordConfirmVisibility}
+                    className="absolute inset-y-0 right-0 flex items-center px-4"
+                  >
+                    {showPasswordConfirm ? "Hide" : "Show"}
+                  </button>
+                  {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
+                </div>
+                
+            {/* reCAPTCHA */}
+                  <ReCAPTCHA sitekey="6LfZ2lIqAAAAACwrrNDbFJ9VFyzV2jQ8Z604HZEj" 
+                  onChange={onChange} 
+                  />
+
+            <br />
+            <button 
+            type= "submit" 
+            className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-48 font-bold">
               Sign Up
               </button>
           </div>

@@ -15,6 +15,7 @@
     "gapi": "^0.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-google-recaptcha": "^3.1.0",
     "react-hook-form": "^7.53.0",
     "react-router-dom": "^6.26.2"
   },
@@ -31,6 +32,6 @@
     "globals": "^15.9.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.12",
-    "vite": "^5.4.7"
+    "vite": "^5.4.8"
   }
 }
