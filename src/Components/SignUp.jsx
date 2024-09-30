@@ -69,7 +69,7 @@ function SignUp() {
   };
 
   return (
-    <section className="h-full">
+    <section className="min-h-screen overflow-hidden">
     <div className="h-screen w-full flex items-stretch text-white">
 
       {/* Left Section with Background Image */}
@@ -183,25 +183,24 @@ function SignUp() {
                 </div>
 
             {/* reCAPTCHA */}
-                  <ReCAPTCHA sitekey="6LfZ2lIqAAAAACwrrNDbFJ9VFyzV2jQ8Z604HZEj" 
-                  onChange={onChange} 
-                  />
-
-            <br />
+            <div className="pb-4 pt-3 flex items-center justify-center">
+              <ReCAPTCHA sitekey="6LfZ2lIqAAAAACwrrNDbFJ9VFyzV2jQ8Z604HZEj" 
+              onChange={onChange}
+              />
+            </div>
             <button 
             type= "submit" 
-            className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-48 font-bold">
+            className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-40 font-bold">
               Sign Up
               </button>
           </div>
           </form>
-          <br />
           <div className="flex items-center justify-between">
                         <div className="mb-3 w-full h-[1px] bg-gray-300"></div>
-                        <span className="mb-3 text-sm uppercase mx-6 text-gray-400">Or</span>
+                        <span className="mb-2 text-sm uppercase mx-6 text-gray-400">Or</span>
                         <div className="mb-3 w-full h-[1px] bg-gray-300"></div>
                     </div>
-          <p className="mb-3 text-gray-100 font-bold">Sign up with</p>
+          <p className="mb-2 text-gray-100 font-bold">Sign up with</p>
           <div className="space-y-3">
             <a href="#" className="flex items-center justify-center text-gray-600 my-2 py-2 bg-gray-100 hover:bg-gray-200 rounded-full w-48 mx-auto">
               <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 326667 333333" shapeRendering="geometricPrecision" textRendering="geometricPrecision" imageRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd">
