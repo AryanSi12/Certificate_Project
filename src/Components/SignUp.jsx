@@ -195,9 +195,9 @@ function SignUp() {
               </button>
           </div>
           </form>
-          <div className="flex items-center justify-between">
+          <div className="mt-2 flex items-center justify-between">
                         <div className="mb-3 w-full h-[1px] bg-gray-300"></div>
-                        <span className="mb-2 text-sm uppercase mx-6 text-gray-400">Or</span>
+                        <span className="mb-3 text-sm uppercase mx-6 text-gray-400">Or</span>
                         <div className="mb-3 w-full h-[1px] bg-gray-300"></div>
                     </div>
           <p className="mb-2 text-gray-100 font-bold">Sign up with</p>
