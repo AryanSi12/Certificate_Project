@@ -22,13 +22,14 @@ function SignUp() {
     }
     // Send form data and captcha Token to your backend for verification
     try {
-      const response = await fetch("/api/your-endpoint", {
+      const response = await fetch("/api/signup", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({ ...data, captchaToken }),
-      });
+    });    
+
       const result = await response.json();
       // Handle the result of the verification
       console.log(result);
@@ -180,7 +181,7 @@ function SignUp() {
                   </button>
                   {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
                 </div>
-                
+
             {/* reCAPTCHA */}
                   <ReCAPTCHA sitekey="6LfZ2lIqAAAAACwrrNDbFJ9VFyzV2jQ8Z604HZEj" 
                   onChange={onChange} 
